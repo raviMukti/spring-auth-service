@@ -1,0 +1,14 @@
+version: '2.0'
+
+services:
+  mysql8.0:
+    image: mysql:8.0.26
+    container_name: MySQL8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=training
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
+      - TZ=Asia/Jakarta
