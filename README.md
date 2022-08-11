@@ -1,2 +1,3 @@
-# spring-auth-service
-Implementation of Auth Service in Microservice Ecosystem using Spring Security (JWT)
+# Spring-Auth-Service
+
+It's a Role Based Authentication (RBA)
