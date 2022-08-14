@@ -3,6 +3,7 @@ package micro.spring.auth.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @PostMapping
+    @RolesAllowed("ROLE_EDITOR")
     public ResponseEntity<ProductEntity> create(@RequestBody @Valid ProductEntity product)
     {
         ProductEntity p = productRepository.save(product);
@@ -32,6 +34,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @RolesAllowed({"ROLE_CUSTOMER", "ROLE_EDITOR"})
     public List<ProductEntity> getAll()
     {
         return productRepository.findAll();
