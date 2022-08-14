@@ -25,6 +25,7 @@ public class JwtTokenUtil {
                 .setSubject(String.format("%s, %s", user.getId(), user.getEmail()))
                 .setIssuer("auth-service")
                 .setIssuedAt(new Date())
+                .claim("roles", user.getRoleEntities().toString())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
@@ -54,7 +55,7 @@ public class JwtTokenUtil {
         return parseClaims(token).getSubject();
     }
 
-    private Claims parseClaims(String token) {
+    public Claims parseClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)
